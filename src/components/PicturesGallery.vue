@@ -1,7 +1,7 @@
 <template>
   <div class="gallery">
     <ul>
-      <li v-for="item in currentItems" :key="item.id">
+      <li v-for="item in items" :key="item.id">
         <img :src="item.source" :alt="`Paysage de ${item.photographer}`">
         <h4>{{ item.photographer }}</h4>
       </li>
@@ -15,10 +15,12 @@
 
 <script>
   import { ref } from 'vue';
+  import useSort from '../composables/useSort.js';
+
   export default {
     name: 'PicturesGallery',
     setup() {
-      const items = ref([
+      const initialItems = ref([
         { id: 100, source: 'https://picsum.photos/id/100/250/150', photographer: 'Tina Rataj' },
         { id: 1000, source: 'https://picsum.photos/id/1000/250/150', photographer: 'Lukas Budimaier' },
         { id: 1002, source: 'https://picsum.photos/id/1002/250/150', photographer: 'NASA' },
@@ -36,21 +38,12 @@
         { id: 1043, source: 'https://picsum.photos/id/1043/250/150', photographer: 'Christian Joudrey' },
         { id: 1051, source: 'https://picsum.photos/id/1051/250/150', photographer: 'Ales Krivec' },
       ]);
-      const currentItems = ref([]);
 
-      function sortItemsBy(criteria) {
-        const sortedItems = items.value.sort((a, b) => {
-          if (a[criteria] < b[criteria]) return -1;
-          if (a[criteria] > b[criteria]) return 1;
-          return 0;
-        });
-        currentItems.value = sortedItems;
-      }
-
+      const {currentItems, sortItemsBy } = useSort(initialItems.value);
       sortItemsBy('id');
 
       return {
-        currentItems,
+        items: currentItems,
         sortItemsBy,
       }
     },
