@@ -29,6 +29,8 @@
 
 <script>
 import { ref } from 'vue';
+import useSort from '../composables/useSort.js';
+
   export default {
     name: 'CoursesPrices',
     setup() {
@@ -40,16 +42,8 @@ import { ref } from 'vue';
           { id: 4, name: 'Pilates', coach: 'Eloïse', day: 'Vendredi', price: 46 },
           { id: 5, name: 'Yoga', coach: 'Niels', day: 'Vendredi', price: 41 },
       ]);
-      const currentItems = ref([]);
-
-      function sortItemsBy(criteria) {
-        const sortedItems = items.value.sort((a, b) => {
-          if (a[criteria] < b[criteria]) return -1;
-          if (a[criteria] > b[criteria]) return 1;
-          return 0;
-        });
-        currentItems.value = sortedItems;
-      }
+      
+      const {currentItems, sortItemsBy } = useSort(items.value);
 
       sortItemsBy('name');
 
