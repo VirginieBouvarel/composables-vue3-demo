@@ -43,12 +43,12 @@ import useSort from '../composables/useSort.js';
           { id: 5, name: 'Yoga', coach: 'Niels', day: 'Vendredi', price: 41 },
       ]);
       
-      const {currentItems, sortItemsBy } = useSort(items.value);
+      const {sortedItems, sortItemsBy } = useSort(items.value);
 
       sortItemsBy('name');
 
       return {
-        currentItems,
+        currentItems: sortedItems,
         sortItemsBy,
       }
     },
