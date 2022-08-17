@@ -1,7 +1,7 @@
 <template>
   <div class="gallery">
     <ul>
-      <li v-for="item in currentItems" :key="item.id">
+      <li v-for="item in sortedItems" :key="item.id">
         <img :src="item.source" :alt="`Paysage de ${item.photographer}`">
           <h4>{{ item.photographer }}</h4>
         <div class="infos">
@@ -42,7 +42,7 @@
       sortItemsBy('id');
 
       return {
-        currentItems: sortedItems,
+        sortedItems: sortedItems,
         sortItemsBy,
       }
     },
