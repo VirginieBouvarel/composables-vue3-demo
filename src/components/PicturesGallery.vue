@@ -1,7 +1,7 @@
 <template>
   <div class="gallery">
     <ul>
-      <li v-for="item in currentItems" :key="item.id">
+      <li v-for="item in sortedItems" :key="item.id">
         <img :src="item.source" :alt="`Paysage de ${item.photographer}`">
           <h4>{{ item.photographer }}</h4>
         <div class="infos">
@@ -34,20 +34,20 @@
         { id: 1021, source: 'https://picsum.photos/id/1021/250/150', photographer: 'Frances Gunn', date: '2021-11-07' },
         { id: 1022, source: 'https://picsum.photos/id/1022/250/150', photographer: 'Vashishtha Jogi', date: '2013-01-17' },
       ]);
-      const currentItems = ref([]);
+      const sortedItems = ref([]);
 
       function sortByPhotographer() {
-        currentItems.value = items.value.sort((a, b) => {
+        sortedItems.value = items.value.sort((a, b) => {
           if (a.photographer < b.photographer) return -1;
           if (a.photographer > b.photographer) return 1;
           return 0;
         });
       }
       function sortById() {
-        currentItems.value = items.value.sort((a, b) => a.id - b.id);
+        sortedItems.value = items.value.sort((a, b) => a.id - b.id);
       }
       function sortByDate() {
-        currentItems.value = items.value.sort((a, b) => {
+        sortedItems.value = items.value.sort((a, b) => {
           return new Date(a.date) - new Date(b.date);
         });
       }
@@ -55,7 +55,7 @@
       sortById();
 
       return { 
-        currentItems, 
+        sortedItems, 
         sortByPhotographer, 
         sortById, 
         sortByDate 

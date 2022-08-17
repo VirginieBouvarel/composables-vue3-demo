@@ -33,8 +33,8 @@ import { ref } from 'vue';
     name: 'CoursesPrices',
     setup() {
       const items = ref([
-        { id: 1, courseName: 'Gym T.A.F', coachName: 'Nathan', day: 'Lundi', price: 42 },
-          { id: 0, courseName: 'AeroDance', coachName: 'Jessica', day: 'Jeudi', price: 42 },
+          { id: 0, courseName: 'Gym T.A.F', coachName: 'Nathan', day: 'Lundi', price: 42 },
+          { id: 1, courseName: 'AeroDance', coachName: 'Jessica', day: 'Jeudi', price: 42 },
           { id: 2, courseName: 'Boxe', coachName: 'Gaël', day: 'Lundi', price: 43 },
           { id: 3, courseName: 'Zumba', coachName: 'Eloïse', day: 'Mercredi', price: 46 },
           { id: 4, courseName: 'Pilates', coachName: 'Eloïse', day: 'Vendredi', price: 46 },
